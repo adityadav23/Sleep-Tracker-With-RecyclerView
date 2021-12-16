@@ -67,7 +67,7 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>(){
         val layoutInflater = LayoutInflater.from(parent.context)
 
         //Inflating the view
-        val view = layoutInflater.inflate(R.layout.text_item_view, parent, false)
+        val view = layoutInflater.inflate(R.layout.list_item_sleep_night, parent, false)
         // Wrapping the view in ViewHolder
         return ViewHolder(view)
 
