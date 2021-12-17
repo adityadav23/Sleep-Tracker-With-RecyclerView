@@ -40,30 +40,20 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>(){
     // This returns no. of items in the data list
     override fun getItemCount() = data.size
 
-
-
     //This tells how to create new views when recycleView Needs it.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        //LayoutInflater
-        val layoutInflater = LayoutInflater.from(parent.context)
-
-        //Inflating the view
-        val view = layoutInflater.inflate(R.layout.list_item_sleep_night, parent, false)
-        // Wrapping the view in ViewHolder
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
 
     }
 
     // This tells how to draw views
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val item = data[position]
         holder.bind(item)
-
     }
 
-
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder private constructor (itemView: View) : RecyclerView.ViewHolder(itemView){
         val sleepLength : TextView = itemView.findViewById(R.id.sleep_length)
         val sleepQuality : TextView = itemView.findViewById(R.id.quality_string)
         val qualityImage : ImageView = itemView.findViewById(R.id.quality_image)
@@ -85,6 +75,21 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>(){
                 }
             )
         }
+
+        // Companion object for onCreateViewHolder
+        companion object {
+             fun from(parent: ViewGroup): ViewHolder {
+                //LayoutInflater
+                val layoutInflater = LayoutInflater.from(parent.context)
+
+                //Inflating the view
+                val view = layoutInflater.inflate(R.layout.list_item_sleep_night, parent, false)
+                // Wrapping the view in ViewHolder
+                return ViewHolder(view)
+            }
+        }
     }
+
+
 
 }
